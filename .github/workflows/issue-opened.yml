@@ -12,4 +12,4 @@ jobs:
         with:
           project: Issues
           column: Triage
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.ISSUES_TOKEN }}
