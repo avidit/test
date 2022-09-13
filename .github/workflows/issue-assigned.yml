@@ -4,6 +4,9 @@ on:
   issues:
     types: [assigned]
 
+permissions:
+  issues: write
+
 jobs:
   automate-project-columns:
     runs-on: ubuntu-latest
