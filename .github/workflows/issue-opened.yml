@@ -15,4 +15,4 @@ jobs:
         with:
           project: DynamoWishlist
           column: Triage
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.DYNAMO_WISHLIST_TOKEN }}
