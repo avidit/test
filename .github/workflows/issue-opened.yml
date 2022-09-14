@@ -5,11 +5,11 @@ on:
     types: [opened]
 
 jobs:
-  automate-project-columns:
+  add-to-project:
+    name: Add issue to triage
     runs-on: ubuntu-latest
     steps:
-      - uses: alex-page/github-project-automation-plus@v0.8.1
+      - uses: actions/add-to-project@RELEASE_VERSION
         with:
-          project: Issues
-          column: Triage
-          repo-token: ${{ secrets.ISSUES_TOKEN }}
+          project-url: https://github.com/orgs/avidit/projects/1
+          github-token: ${{ secrets.ISSUES_TOKEN }}
