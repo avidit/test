@@ -5,11 +5,11 @@ on:
     types: [labeled]
 
 jobs:
-  add-to-project:
+  move-issue-to-backlog:
     name: Move issue to backlog
     runs-on: ubuntu-latest
     steps:
       - uses: actions/add-to-project@v0.3.0
         with:
-          project-url: https://github.com/orgs/avidit/projects/1
+          project-url: https://github.com/users/avidit/projects/1
           github-token: ${{ secrets.ISSUES_TOKEN }}
