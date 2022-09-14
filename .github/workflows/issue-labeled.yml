@@ -5,11 +5,11 @@ on:
     types: [labeled]
 
 jobs:
-  move-issue-to-backlog:
-    name: Move issue to backlog
+  automate-project-columns:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/add-to-project@v0.3.0
+      - uses: alex-page/github-project-automation-plus@v0.8.1
         with:
-          project-url: https://github.com/users/avidit/projects/1
-          github-token: ${{ secrets.ISSUES_TOKEN }}
+          project: test
+          column: Backlog
+          repo-token: ${{ secrets.ISSUES_TOKEN }}
