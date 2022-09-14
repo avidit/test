@@ -19,25 +19,37 @@ jobs:
         with:
           gh_token: ${{ secrets.ISSUES_TOKEN }}
           user: avidit
-          # organization: sample-org
           project_id: 1
           resource_node_id: ${{ github.event.issue.node_id }}
-          status_value: triage
+          status_value: Triage
 
-  issue_assigned:
-    name: issue assigned
+  issue_labeled:
+    name: issue labeled
     runs-on: ubuntu-latest
-    if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')
+    if: github.event_name == 'issues' && github.event.action == 'labeled'
     steps:
       - name: Move issue to triage
         uses: leonsteinhaeuser/project-beta-automations@v2.0.0
         with:
           gh_token: ${{ secrets.ISSUES_TOKEN }}
           user: avidit
-          # organization: sample-org
           project_id: 1
           resource_node_id: ${{ github.event.issue.node_id }}
-          status_value: triage
+          status_value: Backlog
+
+  issue_assigned:
+    name: issue assigned
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'assigned'
+    steps:
+      - name: Move issue to triage
+        uses: leonsteinhaeuser/project-beta-automations@v2.0.0
+        with:
+          gh_token: ${{ secrets.ISSUES_TOKEN }}
+          user: avidit
+          project_id: 1
+          resource_node_id: ${{ github.event.issue.node_id }}
+          status_value: Todo
 
   issue_closed:
     name: issue closed
@@ -49,7 +61,6 @@ jobs:
         with:
           gh_token: ${{ secrets.ISSUES_TOKEN }}
           user: avidit
-          # organization: sample-org
           project_id: 1
           resource_node_id: ${{ github.event.issue.node_id }}
-          status_value: done
+          status_value: Done
