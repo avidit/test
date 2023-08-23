@@ -46,7 +46,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: 'Stacktrace/logs
+      label: 'Stacktrace/logs'
     validations:
       required: false
   - type: textarea
