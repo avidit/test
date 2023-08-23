@@ -2,6 +2,9 @@ name: Bug Report
 description: File a new bug report
 title: ':bug: <title>'
 labels: [needs triage]
+projects: ["avidit/1"]
+assignees:
+  - avidit
 body:
   - type: markdown
     attributes:
