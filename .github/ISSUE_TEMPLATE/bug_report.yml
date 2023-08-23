@@ -14,7 +14,10 @@ body:
   - type: textarea
     attributes:
       label: 'Dynamo Version'
-      description: 'Which version of Dynamo are you using? Go to **Dynamo > About** if you are not sure.'
+      description: >
+        'Which version of Dynamo are you using?'
+        
+        'Go to **Dynamo > About** if you are not sure.'
     validations:
       required: true
   - type: textarea
