@@ -1,8 +1,4 @@
----
-name: Pull Request
-about: pull request
-
----
+<!-- This content will not appear in the rendered Markdown -->
 
 ## Description
 
