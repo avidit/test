@@ -16,4 +16,5 @@ jobs:
           token: ${{ secrets.TESTS_TOKEN }}
           ref: master
       - name: list files
+        shell: cmd
         run: dir /s
