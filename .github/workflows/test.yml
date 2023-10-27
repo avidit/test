@@ -3,18 +3,29 @@ name: Test
 on:
   push:
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - build
+    types:
+      - completed
 
 jobs:
   test:
-    name: test
-    runs-on: windows-latest
+    name: Test
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Print env
+        run: env
+      - name: Print github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Download Artifact
+        if: ${{ github.event_name == 'workflow_run' }}
+        uses: dawidd6/action-download-artifact@v2
         with:
-          repository: DynamoDS/DynamoTestCompleteTests
-          token: ${{ secrets.TESTS_TOKEN }}
-          ref: master
+          name: my-artifact
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          path: ${{ github.workspace }}/build
       - name: list files
-        shell: cmd
-        run: dir /s
+        run: ls -al
