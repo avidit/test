@@ -28,4 +28,4 @@ jobs:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           path: ${{ github.workspace }}/build
       - name: list files
-        run: ls -al
+        run: ls -LR
