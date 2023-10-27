@@ -29,3 +29,9 @@ jobs:
           path: ${{ github.workspace }}/build
       - name: list files
         run: ls -LR
+      - name: Summary
+        if: ${{ github.event_name == 'workflow_run' }}
+        run: |
+          echo "# Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Trigerred by: [${{ github.event.workflow_run.name }}](${{ github.event.workflow_run.html_url }})" >> $GITHUB_STEP_SUMMARY
