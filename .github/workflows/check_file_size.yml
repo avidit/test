@@ -20,12 +20,14 @@ jobs:
           for file in $(cat .github/outputs/all_changed_files.txt)"; do
             echo "${file}"
           done
+      - name: Summary
+        run: |
           echo "# Changed Files" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Files changed - ${{ steps.get_changed_files.outputs.all_changed_files.count }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           for file in $(cat .github/outputs/all_changed_files.txt)"; do
-            echo " - $([[ -n $(find "${file}" -type f -size +50M) ]] && echo "❌" || echo "✅ $file") | $(du -h ${file})" >> $GITHUB_STEP_SUMMARY
+            echo "- $(du -h ${file})" >> $GITHUB_STEP_SUMMARY
           done
       - name: Check file size
         run: |
