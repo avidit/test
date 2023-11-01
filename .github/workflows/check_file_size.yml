@@ -17,7 +17,7 @@ jobs:
           write_output_files: true
       - name: List changed files
         run: |
-          for file in $(cat .github/outputs/all_changed_files.txt)"; do
+          for file in $(cat .github/outputs/all_changed_files.txt); do
             echo "${file}"
           done
       - name: Summary
