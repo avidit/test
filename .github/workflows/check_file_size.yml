@@ -26,7 +26,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Files changed - ${{ steps.get_changed_files.outputs.all_changed_files.count }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          for file in $(cat .github/outputs/all_changed_files.txt)"; do
+          for file in $(cat .github/outputs/all_changed_files.txt); do
             echo "- $(du -h ${file})" >> $GITHUB_STEP_SUMMARY
           done
       - name: Check file size
