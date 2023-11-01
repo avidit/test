@@ -24,8 +24,7 @@ jobs:
             echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
             echo "| :-- | :-- |" >> $GITHUB_STEP_SUMMARY
             for file in $(cat .github/outputs/all_changed_files.txt); do
-              echo "${file}"
-              echo "| $([[ -n $(find "${file}" -type f -size +50M) ]] && echo "❌ $file" || echo "✅ $file") | $(ls -lh ${file} | awk '{print $5}') |" >> $GITHUB_STEP_SUMMARY
+              echo "| $([[ -n $(find "${file}" -type f -size +50M) ]] && echo "❌ $file" || echo "✅ $file") | $(ls -lh ${file} | awk '{print $5}') |" 2>&1 | tee -a $GITHUB_STEP_SUMMARY
             done
       - name: Check file size
         run: |
