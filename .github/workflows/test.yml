@@ -1,4 +1,5 @@
 name: Test
+run-name: Pull Request - ${{ github.event.workflow_run.pull_requests.number }} by @${{ github.actor }}
 
 on:
   push:
