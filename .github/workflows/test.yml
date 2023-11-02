@@ -47,3 +47,4 @@ jobs:
         run: |
           echo "Sender: [${{ github.event.sender.name }}" >> $GITHUB_STEP_SUMMARY
   
+          echo "Pull Request: [${{ github.event.workflow_run.pull_requests[0].number }}](${{ github.event.workflow_run.pull_requests[0].url }})" >> $GITHUB_STEP_SUMMARY
