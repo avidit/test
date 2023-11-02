@@ -46,4 +46,3 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           echo "Sender: [${{ github.event.sender.name }}" >> $GITHUB_STEP_SUMMARY
-  
