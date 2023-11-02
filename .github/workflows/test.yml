@@ -32,7 +32,7 @@ jobs:
       - name: Summary
         run: |
           echo "# Test Summary" >> $GITHUB_STEP_SUMMARY
-          echo "Actor: @[${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "Actor: @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
       - name: Summary - push
         if: ${{ github.event_name == 'workflow_run' }}
         run: |
