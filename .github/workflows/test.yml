@@ -41,7 +41,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_run' }}
         run: |
           echo "Workflow: [${{ github.event.workflow_run.name }}](${{ github.event.workflow_run.html_url }})" >> $GITHUB_STEP_SUMMARY
-          echo "Pull Request: [${{ github.event.workflow_run.pull_requests[0].number }}](${{ github.event.workflow_run.pull_requests[0].url }})" >> $GITHUB_STEP_SUMMARY
+          echo "Pull Request: [${{ github.event.workflow_run.pull_requests[0].number }}](${{ github.event.workflow_run.pull_requests[0].html_url }})" >> $GITHUB_STEP_SUMMARY
       - name: Summary - workflow dispatch
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
