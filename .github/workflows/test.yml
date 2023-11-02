@@ -34,6 +34,10 @@ jobs:
         run: |
           echo "# Test Summary" >> $GITHUB_STEP_SUMMARY
           echo "Actor: @[${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+      - name: Summary - push
+        if: ${{ github.event_name == 'workflow_run' }}
+        run: |
+          echo "Head Commit: [${{ github.event.head_commit.message }}](${{ github.event.head_commit.url }})" >> $GITHUB_STEP_SUMMARY
       - name: Summary - workflow run
         if: ${{ github.event_name == 'workflow_run' }}
         run: |
