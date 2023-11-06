@@ -10,13 +10,13 @@ jobs:
     name: Label Issues
     runs-on: ubuntu-latest
     steps:
+      - uses: github/issue-labeler@v3.2
+        with:
+          repo-token: ${{ github.token }}
+          configuration-path: .github/issue_labeler.yml
+          enable-versioned-regex: 0
       - name: Add comment
         uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.issue.number }}
           body: Thank you for submitting the issue to us. We will look into it as soon as possible.
-      - uses: github/issue-labeler@v3.2
-        with:
-          repo-token: ${{ github.token }}
-          configuration-path: .github/labeler.yml
-          enable-versioned-regex: 0
