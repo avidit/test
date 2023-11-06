@@ -4,6 +4,9 @@ on:
   issues:
     types:
       - opened
+env:
+  ISSUE_NUMBER: ${{ github.event.issue.number }}
+  COMMENT: Thank you for submitting the issue to us. We will look into it as soon as possible.
 
 jobs:
   label_issues:
@@ -13,10 +16,11 @@ jobs:
       - uses: github/issue-labeler@v3.2
         with:
           repo-token: ${{ github.token }}
-          configuration-path: .github/labeler.yml
+          configuration-path: .github/issue_labeler.yml
           enable-versioned-regex: 0
+          include-title: 1
+          include-body: 1
       - name: Add comment
-        uses: peter-evans/create-or-update-comment@v3
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          body: Thank you for submitting the issue to us. We will look into it as soon as possible.
+        run: gh issue comment $ISSUE --body ${{ env.COMMENT }}
+        env:
+          ISSUE: ${{ env.ISSUE_NUMBER }}
