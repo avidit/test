@@ -20,6 +20,8 @@ jobs:
           enable-versioned-regex: 0
           include-title: 1
           include-body: 1
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Add comment
         run: gh issue comment ${{ env.ISSUE_NUMBER }} --body "${{ env.COMMENT }}"
         env:
