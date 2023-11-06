@@ -10,6 +10,18 @@ on:
     types:
       - completed
 
+env:
+  EVENT_NAME: ${{ github.event_name }}
+  ACTOR: ${{ github.actor }}
+  SENDER: ${{ github.event.sender.name }}
+  WORKFLOW_ID: ${{ github.event.workflow_run.workflow_id }}
+  RUN_NAME: ${{ github.event.workflow_run.name }}
+  RUN_URL: ${{ github.event.workflow_run.html_url }}
+  PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+  PR_URL: ${{ github.event.workflow_run.pull_requests[0].html_url }}
+  COMMIT_MESSAGE: ${{ github.event.workflow_run.head_commit.message }}
+  COMMIT_URL: ${{ github.event.workflow_run.head_commit.url }}
+
 jobs:
   test:
     name: Test
@@ -22,28 +34,28 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Download Artifact
-        if: ${{ github.event_name == 'workflow_run' }}
+        if: ${{ env.EVENT_NAME == 'workflow_run' }}
         uses: dawidd6/action-download-artifact@v2
         with:
           name: my-artifact
-          workflow: ${{ github.event.workflow_run.workflow_id }}
+          workflow: ${{ env.WORKFLOW_ID }}
           path: ${{ github.workspace }}/build
       - name: list files
         run: ls -LR
       - name: Summary
         run: |
           echo "# Summary" >> $GITHUB_STEP_SUMMARY
-          echo "Actor: @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "Actor: @${{ env.ACTOR }}" >> $GITHUB_STEP_SUMMARY
       - name: Summary - push
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ env.EVENT_NAME == 'push' }}
         run: |
-          echo "Head Commit: [${{ github.event.head_commit.message }}](${{ github.event.head_commit.url }})" >> $GITHUB_STEP_SUMMARY
+          echo "Head Commit: [${{ env.COMMIT_MESSAGE }}](${{ env.COMMIT_URL }})" >> $GITHUB_STEP_SUMMARY
       - name: Summary - workflow run
-        if: ${{ github.event_name == 'workflow_run' }}
+        if: ${{ env.EVENT_NAME == 'workflow_run' }}
         run: |
-          echo "Workflow: [${{ github.event.workflow_run.name }}](${{ github.event.workflow_run.html_url }})" >> $GITHUB_STEP_SUMMARY
-          echo "Pull Request: [${{ github.event.workflow_run.pull_requests[0].number }}](${{ github.event.workflow_run.pull_requests[0].html_url }})" >> $GITHUB_STEP_SUMMARY
+          echo "Workflow Run: [${{ env.RUN_NAME }}](${{ env.RUN_URL }})" >> $GITHUB_STEP_SUMMARY
+          echo "Pull Request: [${{ env.PR_NUMBER }}](${{ env.PR_URL}})" >> $GITHUB_STEP_SUMMARY
       - name: Summary - workflow dispatch
-        if: ${{ github.event_name == 'workflow_dispatch' }}
+        if: ${{ env.EVENT_NAME == 'workflow_dispatch' }}
         run: |
-          echo "Sender: [${{ github.event.sender.name }}" >> $GITHUB_STEP_SUMMARY
+          echo "Sender: @${{ env.SENDER }}" >> $GITHUB_STEP_SUMMARY
