@@ -1,0 +1,21 @@
+name: Label Issues
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  label_issues:
+    name: Label Issues
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          body: Thank you for submitting the issue to us. We will look into it as soon as possible.
+      - uses: github/issue-labeler@v3.2
+        with:
+          repo-token: ${{ github.token }}
+          configuration-path: .github/labeler.yml
+          enable-versioned-regex: 0
