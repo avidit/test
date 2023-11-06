@@ -21,6 +21,4 @@ jobs:
           include-title: 1
           include-body: 1
       - name: Add comment
-        run: gh issue comment $ISSUE --body ${{ env.COMMENT }}
-        env:
-          ISSUE: ${{ env.ISSUE_NUMBER }}
+        run: gh issue comment ${{ env.ISSUE_NUMBER }} --body "${{ env.COMMENT }}"
