@@ -32,6 +32,8 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Download Artifact
         if: ${{ env.EVENT_NAME == 'workflow_run' }}
         uses: dawidd6/action-download-artifact@v2
