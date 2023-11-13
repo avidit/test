@@ -4,7 +4,9 @@ on:
   issues:
     types:
       - opened
+
 env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ISSUE_NUMBER: ${{ github.event.issue.number }}
   COMMENT: Thank you for submitting the issue to us. We will look into it as soon as possible.
 
@@ -24,5 +26,3 @@ jobs:
         uses: actions/checkout@v2
       - name: Add comment
         run: gh issue comment ${{ env.ISSUE_NUMBER }} --body "${{ env.COMMENT }}"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
