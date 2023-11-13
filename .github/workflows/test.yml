@@ -40,7 +40,7 @@ jobs:
           workflow: ${{ env.WORKFLOW_ID }}
           path: ${{ github.workspace }}/build
       - name: Ryn script
-        run: python test.py
+        run: python ${{ github.workspace }}/.github/test.py
       - name: Summary
         run: |
           echo "# Summary" >> $GITHUB_STEP_SUMMARY
