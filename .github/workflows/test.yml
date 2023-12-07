@@ -1,5 +1,4 @@
 name: Test
-run-name: Test - ${{ github.event.workflow_run.head_commit.message }}
 
 on:
   push:
@@ -9,17 +8,6 @@ on:
       - build
     types:
       - completed
-
-env:
-  EVENT_NAME: ${{ github.event_name }}
-  ACTOR: ${{ github.actor }}
-  WORKFLOW_ID: ${{ github.event.workflow_run.workflow_id }}
-  RUN_NAME: ${{ github.event.workflow_run.name }}
-  RUN_URL: ${{ github.event.workflow_run.html_url }}
-  PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
-  PR_URL: ${{ github.event.workflow_run.pull_requests[0].html_url }}
-  COMMIT_MESSAGE: ${{ github.event.workflow_run.head_commit.message }}
-  COMMIT_URL: ${{ github.event.workflow_run.head_commit.url }}
 
 jobs:
   test:
@@ -35,11 +23,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Download Artifact
-        if: ${{ env.EVENT_NAME == 'workflow_run' }}
+        if: ${{ github.event_name == 'workflow_run' }}
         uses: dawidd6/action-download-artifact@v2
         with:
           name: my-artifact
-          workflow: ${{ env.WORKFLOW_ID }}
+          workflow: ${{ github.event.workflow_run.workflow_id }}
           path: ${{ github.workspace }}/build
       - name: list files
         run: ls -LR
@@ -50,11 +38,10 @@ jobs:
           echo "# Summary" >> $GITHUB_STEP_SUMMARY
           echo "Actor: @${{ env.ACTOR }}" >> $GITHUB_STEP_SUMMARY
       - name: Summary - push
-        if: ${{ env.EVENT_NAME == 'push' }}
+        if: ${{ github.event_name == 'push' }}
         run: |
           echo "Head Commit: [${{ env.COMMIT_MESSAGE }}](${{ env.COMMIT_URL }})" >> $GITHUB_STEP_SUMMARY
       - name: Summary - workflow run
-        if: ${{ env.EVENT_NAME == 'workflow_run' }}
+        if: ${{ github.event_name == 'workflow_run' }}
         run: |
-          echo "Workflow Run: [${{ env.RUN_NAME }}](${{ env.RUN_URL }})" >> $GITHUB_STEP_SUMMARY
-          echo "Pull Request: [${{ env.PR_NUMBER }}](${{ env.PR_URL}})" >> $GITHUB_STEP_SUMMARY
+          echo "Workflow Run: [$${{ github.event.workflow_run.name }}](${{ github.event.workflow_run.html_url }})" >> $GITHUB_STEP_SUMMARY
