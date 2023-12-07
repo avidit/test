@@ -15,7 +15,7 @@ jobs:
         uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
           gh_token: ${{ secrets.TESTS_TOKEN }}
-          organization: ${{ github.repository_owner }}
+          user: ${{ github.repository_owner }}
           project_id: 1
           resource_node_id: ${{ github.event.issue.node_id }}
           status_value: Todo
