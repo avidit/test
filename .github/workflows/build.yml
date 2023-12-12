@@ -15,6 +15,8 @@ jobs:
         run: |
           mkdir build
           echo "hello world" >> "${{ github.workspace }}/build/test-$(date +"%Y-%m-%d-%H-%M").txt"
+      - name: List files
+        run: ls -LR
       - name: Save Build Cache
         uses: actions/cache/save@v3
         with:
