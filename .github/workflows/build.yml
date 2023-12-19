@@ -18,17 +18,23 @@ jobs:
           echo "hello world" >> "${{ github.workspace }}/build/test-$(date +"%Y-%m-%d-%H-%M").txt"
       - name: List files
         run: ls -LR
+      - name: Delete Build Cache
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh cache delete build-${{ github.event.number }}
       - name: Save Build Cache
         uses: actions/cache/save@v3
         with:
           path: ${{ github.workspace }}/build
           key: build-${{ github.event.number }}
       - name: Save Pull Request Number
-        run: echo ${{ github.event.number }} >> ${{ github.workspace }}/pr_number.txt
+        run: |
+          mkdir -p ${{ github.workspace }}/pr
+          echo ${{ github.event.number }} >> ${{ github.workspace }}/pr/pr_number.txt
       - name: Upload Pull Request Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: pr_number
-          path: ${{ github.workspace }}/pr_number.txt
+          name: pr_data
+          path: ${{ github.workspace }}/pr
           if-no-files-found: warn
           retention-days: 1

@@ -18,6 +18,15 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Download Artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          name: pr_data
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          path: ${{ github.workspace }}/pr_data
+      - name: Get PR number
+        run: |
+          "PR_NUMBER=$(cat ${{ github.workspace }}\pr\pr_number.txt)" >> $GITHUB_ENV
       - name: Restore build cache
         uses: actions/cache/restore@v3
         with:
