@@ -21,7 +21,7 @@ jobs:
       - name: Delete Build Cache
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh cache delete build-${{ github.event.number }}
+        run: gh cache delete build-${{ github.event.number }} -R ${{ github.repository }}
       - name: Save Build Cache
         uses: actions/cache/save@v3
         with:
