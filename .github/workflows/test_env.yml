@@ -1,0 +1,35 @@
+name: Test
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print env
+        run: env
+      - name: Print github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Set PR number
+        run: |
+          echo "PR_NUMBER=1" >> $GITHUB_ENV
+      - name: test1
+        if: env.PR_NUMBER
+        run: |
+          echo "not empty"
+          echo "PR_NUMBER=$PR_NUMBER"
+      - name: test2
+        if: env.PR_NUMBER == ''
+        run: |
+          echo "empty"
+          echo "PR_NUMBER=$PR_NUMBER"
+      - name: test2
+        if: env.PR_NUMBER != ''
+        run: |
+          echo "not empty"
+          echo "PR_NUMBER=$PR_NUMBER"
