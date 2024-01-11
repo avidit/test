@@ -35,17 +35,17 @@ jobs:
       - name: List files
         run: ls -LR
       - name: test1
-        if: env.PR_NUMBER
+        if: env.GITHUB_WORKSPACE
         run: |
           echo "not empty"
-          echo "PR_NUMBER=$PR_NUMBER"
+          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
       - name: test2
-        if: env.PR_NUMBER == ''
+        if: env.GITHUB_WORKSPACE == ''
         run: |
           echo "empty"
-          echo "PR_NUMBER=$PR_NUMBER"
+          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
       - name: test2
-        if: env.PR_NUMBER != ''
+        if: env.GITHUB_WORKSPACE != ''
         run: |
           echo "not empty"
-          echo "PR_NUMBER=$PR_NUMBER"
+          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
