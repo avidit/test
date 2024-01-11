@@ -34,3 +34,18 @@ jobs:
           key: build-${{ env.PR_NUMBER }}
       - name: List files
         run: ls -LR
+      - name: test1
+        if: env.PR_NUMBER
+        run: |
+          echo "not empty"
+          echo "PR_NUMBER=$PR_NUMBER"
+      - name: test2
+        if: env.PR_NUMBER == ''
+        run: |
+          echo "empty"
+          echo "PR_NUMBER=$PR_NUMBER"
+      - name: test2
+        if: env.PR_NUMBER != ''
+        run: |
+          echo "not empty"
+          echo "PR_NUMBER=$PR_NUMBER"
