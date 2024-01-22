@@ -19,7 +19,7 @@ jobs:
             "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
       - name: Print one
         run:
-            Write-Host ${{ env.COMMENT }}
+            Write-Host "${{ env.COMMENT }}"
       - name: Set the value in bash
         id: step_two
         shell: bash
@@ -33,7 +33,7 @@ jobs:
           } >> "$GITHUB_ENV"
       - name: Print two
         run:
-            Write-Host ${{ env.COMMENT }}
+            Write-Host "${{ env.COMMENT }}"
       - name: Create Pull Request Comment
         id: create_comment
         run: |
@@ -44,4 +44,4 @@ jobs:
           "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
       - name: Print Comment
         run:
-            Write-Host ${{ env.COMMENT }}
+            Write-Host "${{ env.COMMENT }}"
