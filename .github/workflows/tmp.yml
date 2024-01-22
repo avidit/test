@@ -36,11 +36,11 @@ jobs:
       - name: Create Pull Request Comment
         id: create_comment
         run: |
-          "COMMENT<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "COMMENT1<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
           "## Comment"  | Out-File -FilePath $env:GITHUB_ENV -Append
           "Title: This is a title" | Out-File -FilePath $env:GITHUB_ENV -Append
           "Body: This is a body" | Out-File -FilePath $env:GITHUB_ENV -Append
           "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
       - name: Print Comment
         run:
-            Write-Host "${{ env.COMMENT }}"
+            Write-Host "${{ env.COMMENT1 }}"
