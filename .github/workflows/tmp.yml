@@ -11,10 +11,9 @@ jobs:
       - name: Set the value in pwsh
         id: step_one
         run: |
-            $EOF = -join (1..15 | ForEach {[char]((48..57)+(65..90)+(97..122) | Get-Random)})
             "COMMENT<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
             "## COMMENT" | Out-File -FilePath $env:GITHUB_ENV -Append
-            "Title: This is a title"  | Out-File -FilePath $env:GITHUB_ENV -Append
+            "Title: This is a title" | Out-File -FilePath $env:GITHUB_ENV -Append
             "Body: This is a body" | Out-File -FilePath $env:GITHUB_ENV -Append
             "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
       - name: Print one
@@ -39,7 +38,7 @@ jobs:
         run: |
           "COMMENT<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
           "## Comment"  | Out-File -FilePath $env:GITHUB_ENV -Append
-          "Title: This is a title"  | Out-File -FilePath $env:GITHUB_ENV -Append
+          "Title: This is a title" | Out-File -FilePath $env:GITHUB_ENV -Append
           "Body: This is a body" | Out-File -FilePath $env:GITHUB_ENV -Append
           "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
       - name: Print Comment
