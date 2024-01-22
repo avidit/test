@@ -13,7 +13,7 @@ jobs:
         run: |
             $EOF = -join (1..15 | ForEach {[char]((48..57)+(65..90)+(97..122) | Get-Random)})
             "JSON_RESPONSE<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
-            Test | Out-File -FilePath $env:GITHUB_ENV -Append
+            "Test" | Out-File -FilePath $env:GITHUB_ENV -Append
             "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
       - name: Print one
         run:
@@ -35,8 +35,8 @@ jobs:
         run: |
           "COMMENT<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
           "## Comment"  | Out-File -FilePath $env:GITHUB_ENV -Append
-          Title: This is a title  | Out-File -FilePath $env:GITHUB_ENV -Append
-          Body: This is a body | Out-File -FilePath $env:GITHUB_ENV -Append
+          "Title: This is a title"  | Out-File -FilePath $env:GITHUB_ENV -Append
+          "Body: This is a body" | Out-File -FilePath $env:GITHUB_ENV -Append
           "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
       - name: Print Comment
         run:
