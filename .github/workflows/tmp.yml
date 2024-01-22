@@ -28,7 +28,8 @@ jobs:
             echo "Body: This is a body"
             echo EOF
           } >> "$GITHUB_ENV"
-      - name: Print two
+      - name: Print
         run:
           Write-Host "${{ env.COMMENT1 }}"
+          Write-Host
           Write-Host "${{ env.COMMENT2 }}"
