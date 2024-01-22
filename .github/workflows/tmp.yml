@@ -30,7 +30,7 @@ jobs:
       - name: Print two
         run:
             Write-Host ${{ env.JSON_RESPONSE }}
-    - name: Create Pull Request Comment
+      - name: Create Pull Request Comment
         id: create_comment
         run: |
           "COMMENT<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
