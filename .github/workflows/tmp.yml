@@ -31,5 +31,5 @@ jobs:
       - name: Print
         run:
           Write-Host "${{ env.COMMENT1 }}"
-          Write-Host
+          Write-Host ""
           Write-Host "${{ env.COMMENT2 }}"
