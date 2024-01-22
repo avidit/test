@@ -26,9 +26,9 @@ jobs:
         run: |
           {
             echo 'COMMENT<<EOF'
-            ## Comment
-            Title: This is a title
-            Body: This is a body
+            echo "## Comment"
+            echo "Title: This is a title"
+            echo "Body: This is a body"
             echo EOF
           } >> "$GITHUB_ENV"
       - name: Print two
