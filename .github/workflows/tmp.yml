@@ -12,24 +12,28 @@ jobs:
         id: step_one
         run: |
             $EOF = -join (1..15 | ForEach {[char]((48..57)+(65..90)+(97..122) | Get-Random)})
-            "JSON_RESPONSE<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
-            "Test" | Out-File -FilePath $env:GITHUB_ENV -Append
+            "COMMENT<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
+            "## COMMENT" | Out-File -FilePath $env:GITHUB_ENV -Append
+            "Title: This is a title"  | Out-File -FilePath $env:GITHUB_ENV -Append
+            "Body: This is a body" | Out-File -FilePath $env:GITHUB_ENV -Append
             "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
       - name: Print one
         run:
-            Write-Host ${{ env.JSON_RESPONSE }}
+            Write-Host ${{ env.COMMENT }}
       - name: Set the value in bash
         id: step_two
         shell: bash
         run: |
           {
-            echo 'JSON_RESPONSE<<EOF'
-            curl https://example.com
+            echo 'COMMENT<<EOF'
+            ## Comment
+            Title: This is a title
+            Body: This is a body
             echo EOF
           } >> "$GITHUB_ENV"
       - name: Print two
         run:
-            Write-Host ${{ env.JSON_RESPONSE }}
+            Write-Host ${{ env.COMMENT }}
       - name: Create Pull Request Comment
         id: create_comment
         run: |
@@ -41,4 +45,3 @@ jobs:
       - name: Print Comment
         run:
             Write-Host ${{ env.COMMENT }}
-              
