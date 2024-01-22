@@ -11,11 +11,11 @@ jobs:
       - name: Set the value in pwsh
         id: step_one
         run: |
-            "COMMENT1<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
-            "## COMMENT" | Out-File -FilePath $env:GITHUB_ENV -Append
-            "Title: This is a title" | Out-File -FilePath $env:GITHUB_ENV -Append
-            "Body: This is a body" | Out-File -FilePath $env:GITHUB_ENV -Append
-            "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "COMMENT1<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "## COMMENT" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "Title: This is a title" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "Body: This is a body" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
       - name: Print one
         run:
             Write-Host "${{ env.COMMENT1 }}"
@@ -32,15 +32,4 @@ jobs:
           } >> "$GITHUB_ENV"
       - name: Print two
         run:
-            Write-Host "${{ env.COMMENT }}"
-      - name: Create Pull Request Comment
-        id: create_comment
-        run: |
-          "COMMENT2<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
-          "## Comment"  | Out-File -FilePath $env:GITHUB_ENV -Append
-          "Title: This is a title" | Out-File -FilePath $env:GITHUB_ENV -Append
-          "Body: This is a body" | Out-File -FilePath $env:GITHUB_ENV -Append
-          "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
-      - name: Print Comment
-        run:
-            Write-Host "${{ env.COMMENT2 }}"
+          Write-Host "${{ env.COMMENT }}"
