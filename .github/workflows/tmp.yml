@@ -1,0 +1,23 @@
+name: tmp
+
+on:
+  push:
+  workflow_run:
+
+jobs:
+  tmp:
+    name: tmp
+    runs-on: windows-latest
+    steps:
+      - name: Create Pull Request Comment
+        id: create_comment
+        run: |
+          $comment=@"
+          ## Comment
+          Title: This is a title
+          Body: This is a body 
+          "@
+          $comment | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+      - name: Print Comment
+        run:
+            Write-Host ${{ steps.create_comment.outputs.comment }}
