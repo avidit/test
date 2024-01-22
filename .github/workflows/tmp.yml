@@ -11,8 +11,8 @@ jobs:
       - name: Set the value in pwsh
         id: step_one
         run: |
+          $EOF = -join (1..15 | ForEach {[char]((48..57)+(65..90)+(97..122) | Get-Random)})
           "COMMENT1<<$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
-          "## COMMENT" | Out-File -FilePath $env:GITHUB_ENV -Append
           "Title: This is a title" | Out-File -FilePath $env:GITHUB_ENV -Append
           "Body: This is a body" | Out-File -FilePath $env:GITHUB_ENV -Append
           "$EOF" | Out-File -FilePath $env:GITHUB_ENV -Append
@@ -24,7 +24,7 @@ jobs:
         shell: bash
         run: |
           {
-            echo 'COMMENT<<EOF'
+            echo 'COMMENT2<<EOF'
             echo "## Comment"
             echo "Title: This is a title"
             echo "Body: This is a body"
@@ -32,4 +32,4 @@ jobs:
           } >> "$GITHUB_ENV"
       - name: Print two
         run:
-          Write-Host "${{ env.COMMENT }}"
+          Write-Host "${{ env.COMMENT2 }}"
