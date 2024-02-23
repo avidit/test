@@ -1,11 +1,11 @@
-name: tmp
+name: here
 
 on:
   push:
 
 jobs:
   tmp:
-    name: tmp
+    name: here
     runs-on: windows-latest
     steps:
       - name: Set the value in pwsh
