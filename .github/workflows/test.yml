@@ -16,8 +16,8 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Test 1
-        if: ${{ github.event_name == 'push' }} && {{ github.ref == 'refs/heads/develop' }}
+        if: ${{ github.event_name == 'push' }} && {{ github.ref == 'refs/heads/main' }}
         run: echo "Test 1"
       - name: Test 2
-        if: ${{ github.event_name == 'push' &&  github.ref == 'refs/heads/develop' }}
+        if: ${{ github.event_name == 'push' &&  github.ref == 'refs/heads/main' }}
         run: echo "Test 2"
