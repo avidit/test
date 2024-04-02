@@ -27,6 +27,6 @@ jobs:
           # print(job_context)
 
           print("${{ github.repository }}")
-          job_context = ${{ toJson(job) }})
+          job_context = ${{ toJson(job) }}
           job_status = job_context['status'].upper()
           print(job_status)
