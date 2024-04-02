@@ -20,3 +20,6 @@ jobs:
           print("${{ github.repository }}")
           job_status = ${{ toJson(job) }}['status'].upper()
           print(job_status)
+          print("${{ job.status }}")
+          run_url = "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          print(run_url)
