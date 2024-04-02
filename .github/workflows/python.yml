@@ -14,12 +14,14 @@ jobs:
       - name: Test
         shell: python
         env:
-          github: ${{ toJSON(github) }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+          JOB_CONTEXT: ${{ toJson(job) }}
         run: |
           import json
           import os
 
-          print(os.environ['PATH'])
-          print(os.environ['github'])
-          context = json.loads(os.environ['github'])
-          print(context)
+          github_context = json.loads(os.environ['GITHUB_CONTEXT'])
+          print(github_context)
+
+          job_context = json.loads(os.environ['JOB_CONTEXT'])
+          print(job_context)
