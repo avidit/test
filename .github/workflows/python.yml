@@ -20,11 +20,13 @@ jobs:
           import json
           import os
 
-          github_context = json.loads(os.environ['GITHUB_CONTEXT'])
-          print(github_context)
+          # github_context = json.loads(os.environ['GITHUB_CONTEXT'])
+          # print(github_context)
 
-          job_context = json.loads(os.environ['JOB_CONTEXT'])
-          print(job_context)
+          # job_context = json.loads(os.environ['JOB_CONTEXT'])
+          # print(job_context)
 
           print("${{ github.repository }}")
-          print(${{ toJson(job) }})
+          job_context = ${{ toJson(job) }})
+          job_status = job_context['status'].upper()
+          print(job_status)
