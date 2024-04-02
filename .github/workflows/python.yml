@@ -27,4 +27,4 @@ jobs:
           print(job_context)
 
           print("${{ github.repository }}")
-          print(json.load(${{ toJson(job) }}))
+          print(${{ toJson(job) }})
