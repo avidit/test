@@ -16,7 +16,7 @@ jobs:
         env:
           github: ${{ toJSON(github) }}
         run: |
-          ipmort json
+          import json
           import os
 
           print(os.environ['PATH'])
