@@ -1,0 +1,25 @@
+name: Python shell
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        shell: python
+        env:
+          github: ${{ toJSON(github) }}
+        run: |
+          ipmort json
+          import os
+
+          print(os.environ['PATH'])
+          print(os.environ['github'])
+          context = json.loads(os.environ['github'])
+          print(context)
