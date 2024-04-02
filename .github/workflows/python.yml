@@ -26,5 +26,5 @@ jobs:
           job_context = json.loads(os.environ['JOB_CONTEXT'])
           print(job_context)
 
-          print(json.loads("${{ github.repository }}"))
-          print(json.loads("${{ toJson(job) }}"))
+          print("${{ github.repository }}")
+          print(json.load("${{ toJson(job) }}"))
