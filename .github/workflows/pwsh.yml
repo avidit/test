@@ -9,10 +9,14 @@ jobs:
     steps:
       - name: one
         shell: pwsh
-        run: Write-Output step one
+        run: Write-Output ℹ️ step one
       - name: two
         shell: pwsh
-        run: Write-Error step two
+        run: Write-Host ⚠️ Warning -ForegroundColor Yellow
       - name: three
         shell: pwsh
-        run: Write-Host step three
+        continue-on-error: true
+        run: Write-Error ❌ Error
+      - name: four
+        shell: pwsh
+        run: Write-Error ❌ Error -ErrorAction Stop
