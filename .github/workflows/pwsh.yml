@@ -7,16 +7,15 @@ jobs:
     name: Test
     runs-on: windows-latest
     steps:
-      - name: one
+      - name: debug
         shell: pwsh
-        run: Write-Output ℹ️ step one
-      - name: two
+        run: Write-Output "::debug::Set the Octocat variable"
+      - name: notice
         shell: pwsh
-        run: Write-Host ⚠️ Warning -ForegroundColor Yellow
-      - name: three
+        run: Write-Output "::notice file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+      - name: warning
         shell: pwsh
-        continue-on-error: true
-        run: Write-Error ❌ Error
-      - name: four
+        run: Write-Output "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+      - name: error
         shell: pwsh
-        run: Write-Error ❌ Error -ErrorAction Stop
+        run: Write-Output "::error file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
