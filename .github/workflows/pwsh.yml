@@ -12,11 +12,7 @@ jobs:
       - name: error
         shell: pwsh
         run: |
-          Get-ChildItem -Path ${{ github.workspace }}\.github -Recurse
           $files = Get-ChildItem -Path ${{ github.workspace }}\.github -Recurse
           foreach ($file in $files) {
             Write-Output "::error title=$($file.FullName)::Missing version information"
-          }
-          $files | ForEach-Object {
-            Write-Output "::error title=$($_.FullName)::version information"
           }
