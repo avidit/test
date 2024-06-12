@@ -14,7 +14,7 @@ jobs:
         run: |
           $files = Get-ChildItem -Path ${{ github.workspace }}\.github -Recurse
           $title = "Missing version information"
-          $message = $files | ForEach-Object { $_.FullName }
-          $message2 = foreach ($file in $files) {$file.FullName}
-          Write-Output "::error title=one::$message"
-          Write-Output "::error title=two::$message1"
+          foreach ($file in $files) {
+            Write-Output "::error title=$title::$file.FullName"
+          }
+          Write-Output "::error::This is an error message"
