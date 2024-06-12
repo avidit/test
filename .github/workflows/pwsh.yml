@@ -7,18 +7,10 @@ jobs:
     name: Test
     runs-on: windows-latest
     steps:
-      - name: debug
-        shell: pwsh
-        run: Write-Output "::debug::Set the Octocat variable"
-      - name: notice
-        shell: pwsh
-        run: Write-Output "::notice file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
-      - name: warning
-        shell: pwsh
-        run: Write-Output "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
       - name: error
         shell: pwsh
         run: |
+          Get-ChildItem -Path ${{ github.workspace }}
           $files = Get-ChildItem -Path ${{ github.workspace }}
           foreach ($file in $files) {
             Write-Output "::error file=$($file.FullName)::Missing version information"
