@@ -7,6 +7,8 @@ jobs:
     name: Test
     runs-on: windows-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
       - name: error
         shell: pwsh
         run: |
