@@ -15,8 +15,8 @@ jobs:
           Get-ChildItem -Path ${{ github.workspace }}\.github -Recurse
           $files = Get-ChildItem -Path ${{ github.workspace }}\.github -Recurse
           foreach ($file in $files) {
-            Write-Output "::error file=$($file.FullName)::Missing version information"
+            Write-Output "::error title=$($file.FullName)::Missing version information"
           }
           $files | ForEach-Object {
-            Write-Output "::error file=$($_.FullName)::Missing version information"
+            Write-Output "::error title=$($_.FullName)::version information"
           }
