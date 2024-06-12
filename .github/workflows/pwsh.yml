@@ -14,7 +14,8 @@ jobs:
         run: |
           $files = Get-ChildItem -Path ${{ github.workspace }}\.github -Recurse
           $title = "Missing version information"
-          Write-Output "::error ::ℹ❌ This is an error message`n"
+          Write-Output "::error::❌ This is an error message`n"
+          
           $files | Foreach-Object {
-            Write-Output "::error title=$title::$file.FullName"
+            Write-Output "::error title=$title::$_.FullName"
           }
