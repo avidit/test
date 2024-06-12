@@ -18,4 +18,11 @@ jobs:
         run: Write-Output "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
       - name: error
         shell: pwsh
-        run: Write-Output "::error::Missing semicolon"
+        run: |
+          $files = @(Get-ChildItem -Path . -Recurse)
+          foreach ($file in $files) {
+            Write-Output "::error file=$($file.FullName)::Missing version information"
+          }
+          $files | ForEach-Object {
+            Write-Output "::error file=$($_.FullName)::Missing version information"
+          }
