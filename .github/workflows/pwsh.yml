@@ -13,4 +13,4 @@ jobs:
         shell: pwsh
         run: |
           $files = Get-ChildItem -Path ${{ github.workspace }}\.github -Recurse
-          Write-Output "::error title=Missing version information::$(foreach ($file in $files) { $file.FullName })"
+          Write-Output "::error title=Missing version information::$(foreach ($file in $files) { Write-Host $file.FullName })"
