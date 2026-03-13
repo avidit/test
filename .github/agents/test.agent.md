@@ -1,5 +1,5 @@
 ---
-name: test
+name: test guy
 description: test agent
 ---
 
