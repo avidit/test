@@ -1,5 +1,5 @@
 ---
-name: test
+name: test awesome
 description: test agent
 ---
 
